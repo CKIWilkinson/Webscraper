@@ -16,6 +16,7 @@ request (address, function (error, response, html) {
 		var emails = knwlInstance.get("emails");
 		console.log("Email addresses found:");
 		//Outputs all found email addresses
+		var emailAddresses = new Array;		//Stores the addresses in an array for future manipulation
 		for (var i = 0; i < emails.length; i++) {
 			var duplicate = false
 			//Prevents duplicate email addresses from being output
@@ -26,9 +27,11 @@ request (address, function (error, response, html) {
 
 			}			
 			if (duplicate == false) {
-			console.log(emails[i].address);
+				console.log(emails[i]);
+				emailAddresses.push(emails[i]);
 			}
 		}
+		
 	}
 })
 
