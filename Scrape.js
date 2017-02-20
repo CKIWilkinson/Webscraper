@@ -4,7 +4,7 @@ var Knwl = require("knwl.js");
 var knwlInstance = new Knwl;
 
 //gets web address from email address
-var emailAddress = "HDanby@express-its.com";
+var emailAddress = "HDanby@thinkcre8.co.uk";
 var addressPosition = (emailAddress.indexOf("@") + 1);
 var address = ("http://www." + emailAddress.slice(addressPosition));
 console.log(address);
@@ -27,8 +27,8 @@ request (address, function (error, response, html) {
 
 			}			
 			if (duplicate == false) {
-				console.log(emails[i]);
-				emailAddresses.push(emails[i]);
+				console.log(emails[i].address);
+				emailAddresses.push(emails[i].address);
 			}
 		}
 		
