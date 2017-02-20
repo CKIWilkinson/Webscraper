@@ -1,10 +1,10 @@
-var cheerio = require("cheerio");
+//Initialisation
 var request = require("request");
 var Knwl = require("knwl.js");
 var knwlInstance = new Knwl;
 
 //gets web address from email address
-var emailAddress = "brianjarvis@3aaa.co.uk";
+var emailAddress = "HDanby@express-its.com";
 var addressPosition = (emailAddress.indexOf("@") + 1);
 var address = ("http://www." + emailAddress.slice(addressPosition));
 console.log(address);
@@ -12,10 +12,23 @@ console.log(address);
 //Beginning of the scraping portion
 request (address, function (error, response, html) {
 	if (!error && response.statusCode == 200) {
-		var $ = cheerio.load(html);
-		knwlInstance.init($);
-		var phoneNumbers = knwlInstance.get("phones");
-		console.log(phoneNumbers);
+		knwlInstance.init(html);
+		var emails = knwlInstance.get("emails");
+		console.log("Email addresses found:");
+		//Outputs all found email addresses
+		for (var i = 0; i < emails.length; i++) {
+			var duplicate = false
+			//Prevents duplicate email addresses from being output
+			for (var z = i - 1; z > -1; z--) {
+				if (emails[i].address == emails[z].address) {
+					duplicate = true
+				}
+
+			}			
+			if (duplicate == false) {
+			console.log(emails[i].address);
+			}
+		}
 	}
 })
 
