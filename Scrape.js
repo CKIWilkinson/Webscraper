@@ -4,31 +4,31 @@ var Knwl = require("knwl.js");
 var knwlInstance = new Knwl;
 
 //gets web address from email address
-var emailAddress = "HDanby@thinkcre8.co.uk";
-var addressPosition = (emailAddress.indexOf("@") + 1);
-var address = ("http://www." + emailAddress.slice(addressPosition));
-console.log(address);
+var strEmailAddress = "HDanby@thinkcre8.co.uk";
+var intAddressPosition = (emailAddress.indexOf("@") + 1);
+var strAddress = ("http://www." + strEmailAddress.slice(intAddressPosition));
+console.log(strAddress);
 
 //Beginning of the scraping portion
 request (address, function (error, response, html) {
 	if (!error && response.statusCode == 200) {
 		knwlInstance.init(html);
-		var emails = knwlInstance.get("emails");
+		var arrEmails = knwlInstance.get("emails");
 		console.log("Email addresses found:");
 		//Outputs all found email addresses
-		var emailAddresses = new Array;		//Stores the addresses in an array for future manipulation
-		for (var i = 0; i < emails.length; i++) {
-			var duplicate = false
+		var arrEmailAddresses = new Array;		//Stores the addresses in an array for future manipulation
+		for (var i = 0; i < arrEmailAdresses.length; i++) {
+			var boolDuplicate = false
 			//Prevents duplicate email addresses from being output
-			for (var z = i - 1; z > -1; z--) {
-				if (emails[i].address == emails[z].address) {
-					duplicate = true
+			for (var z = (i - 1); z > -1; z--) {
+				if (arrEmails[i].address == arrEmails[z].address) {
+					boolDuplicate = true
 				}
 
 			}			
-			if (duplicate == false) {
-				console.log(emails[i].address);
-				emailAddresses.push(emails[i].address);
+			if (boolDuplicate == false) {
+				console.log(arrEmails[i].address);
+				arrEmailAddresses.push(emails[i].address);
 			}
 		}
 		
